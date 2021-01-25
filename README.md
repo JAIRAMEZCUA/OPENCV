@@ -72,29 +72,29 @@ Por lo cual seguimos la ruta donde se encuentran la clase a corregir:
 **..\opencv\modules\core\include\opencv2\core\cvdef.h**
 Agregamos estas funciones:
 
-Continuando solucionando el error vamos a la clase **matrix_sparse.cpp** Esta la encontramos en : **...\opencv\modules\core\src** Dentro de esta.
-
-    •	std::max Lo sustituimos por TEMPMAX
-
-Guardamos y volvemos a poner el comando mingw32-make, detectando nuevos errores.
-
-8.	Encontraremos error en la función std::max  en la clase base.hpp. en la ruta: **…\opencv\modules\core\include\opencv2\core** dentro de esta.
-
-    •	std::max Lo sustituimos por TEMPMAX
-
-Continuando reparando el problema vamos a la clase **matrix_sparse.cpp**. Esta la encontramos en : **...\opencv\modules\core\src** dentro de esta.
+Continuando solucionando el error vamos a la clase **matrix_sparse.cpp** Esta la encontramos en : **...\opencv\modules\core\src** en el archivo modificamos
 
     •	std::max Lo sustituimos por TEMPMAX
 
 Guardamos y volvemos a poner el comando **mingw32-make**, detectando nuevos errores.
 
-9.	Encontraremos error en la función **std::max**  en la clase **denoise_tvl1.hpp** en la ruta: **…\opencv\modules\photo\src**
+8.	Encontraremos error en la función std::max  en el archivo  **base.hpp**. en la ruta: **…\opencv\modules\core\include\opencv2\core** en el archivo modificamos
+
+    •	std::max Lo sustituimos por TEMPMAX
+
+Continuando reparando el problema vamos al archivo  **matrix_sparse.cpp**. Esta la encontramos en : **...\opencv\modules\core\src** en el archivo modificamos
+
+    •	std::max Lo sustituimos por TEMPMAX
+
+Guardamos y volvemos a poner el comando **mingw32-make**, detectando nuevos errores.
+
+9.	Encontraremos error en la función **std::max** en el archivo  **denoise_tvl1.hpp** en la ruta: **…\opencv\modules\photo\src** en el archivo modificamos
 
    •    std::max Lo sustituimos por TEMPMAX
 
-Guardamos y volvemos a poner el comando mingw32-make, detectando nuevos errores.
+Guardamos y volvemos a poner el comando **mingw32-make**, detectando nuevos errores.
 
-10.	Encontraremos error en la función **std::isnan** en la clase fast_nlmeans_denoising_invoker_commons.hpp  en la ruta: **…\opencv\modules\photo\src**
+10.	Encontraremos error en la función **std::isnan** en el archivo **fast_nlmeans_denoising_invoker_commons.hpp**  en la ruta: **…\opencv\modules\photo\src** en el archivo modificamos
 
 **std::isnan Lo sustituimos por TEMPISNAN**
 
@@ -134,7 +134,7 @@ En esta ruta vamos a pegar los archivos del siguiente punto.
 18.	Vamos a la ruta de donde creamos la biblioteca que en este ejemplo es **build_android_arm** e ingresamos a **build_android_arm\install\sdk\java\src\org\opencv**
 Aquí copiamos todos los archivos y los pegamos en la ruta del punto anterior.
 
-19.	Remplazamos la nueva librería nativa de JNI. Por lo tanto ingresamos a la ruta de librería creada en: **build_android_arm\install\sdk\native\libs\armeabi-v7a**  y copiamos el archivo de **libopencv_java4.so**  y lo pegamos en  la ruta del proyecto de prueba  **..\app\src\main\jniLibs**  aquí dentro eliminamos la carpeta de : arm64-v8a  e ingresamos a la carpeta de **armeabi-v7a**  y pegamos el archivo **libopencv_java4.so**
+19.	Remplazamos la nueva librería nativa de JNI. Por lo tanto ingresamos a la ruta de librería creada en: **build_android_arm\install\sdk\native\libs\armeabi-v7a**  y copiamos el archivo de **libopencv_java4.so**  y lo pegamos en  la ruta del proyecto de prueba  **..\app\src\main\jniLibs**  aquí dentro eliminamos la carpeta de : **arm64-v8a**  e ingresamos a la carpeta de **armeabi-v7a**  y pegamos el archivo **libopencv_java4.so**
 
 20.	Copiamos la librería  **libc++_shared.so** esta la obtenemos del NDK en la ruta :
 
