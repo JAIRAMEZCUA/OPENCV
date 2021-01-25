@@ -2,6 +2,7 @@
 MANUAL PARA EL MINIFICADO DE OPENCV.
 Requisitos:
 Tener instalado los siguientes softwares:
+
         •	Os: Windows 10
         •	Java: JDK 8
         •	Android Studio 3.1.4 for Windows 64-bit: https://developer.android.com/studio/
@@ -15,7 +16,8 @@ Tener instalado los siguientes softwares:
 
 
 1.	Descargar y/o clonar la librería de OpenCV de : https://github.com/opencv/opencv.git
-2.	Configuramos las variables de entorno.
+2.	Configuramos las variables de entorno:
+
         •	Android Studio
         •	Java
         •	ANT
