@@ -1,31 +1,30 @@
 # OPENCV
-Manual de minimización para OpenCv
-
-
 MANUAL PARA EL MINIFICADO DE OPENCV.
 Requisitos:
 Tener instalado los siguientes softwares:
-•	Os: Windows 10
-•	Java: JDK 8
-•	Android Studio 3.1.4 for Windows 64-bit: https://developer.android.com/studio/
-•	Android NDK r16b or greater: https://developer.android.com/ndk/dow...
-•	OpenCV SDK for Android: https://sourceforge.net/projects/open...
-•	Cmake: https://cmake.org/download/
-•	Ant 1.10.1 or greater: http://ant.apache.org/bindownload.cgi
-•	Python 2.6 or greater (but not 3.0
-•	Git for Windows: https://git-scm.com/downloads
-•	mingw32-make: https://sourceforge.net/projects/ming...
+        •	Os: Windows 10
+        •	Java: JDK 8
+        •	Android Studio 3.1.4 for Windows 64-bit: https://developer.android.com/studio/
+        •	Android NDK r16b or greater: https://developer.android.com/ndk/dow...
+        •	OpenCV SDK for Android: https://sourceforge.net/projects/open...
+        •	Cmake: https://cmake.org/download/
+        •	Ant 1.10.1 or greater: http://ant.apache.org/bindownload.cgi
+        •	Python 2.6 or greater (but not 3.0
+        •	Git for Windows: https://git-scm.com/downloads
+        •	mingw32-make: https://sourceforge.net/projects/ming...
 
 
 1.	Descargar y/o clonar la librería de OpenCV de : https://github.com/opencv/opencv.git
 2.	Configuramos las variables de entorno.
-•	Android Studio
-•	Java
-•	ANT
-•	MinGW para compilar aplicaciones nativas en C.
+        •	Android Studio
+        •	Java
+        •	ANT
+        •	MinGW para compilar aplicaciones nativas en C.
 
 3.	Dentro de la ruta \opencv\platforms en platform creamos un directorio con el nombre de build_android_arm dentro de la carpeta usamos  cmake para configurar el espacio de trabajo.
+
 4.	 Estas son las configuraciones a realizar:
+
 cmake -G “Unix Makefiles”
 -DCMAKE_TOOLCHAIN_FILE=..\platforms\android/android.toolchain.cmake  ..\..
 -DANDROID_NDK=C:\Users\jamezcua\android-ndk-r22
@@ -51,15 +50,13 @@ cmake -G “Unix Makefiles”
 5.	Empezamos a construir con: mingw32-make
 NOTA: EMPEZAREMOS A TENER ERRORES resolveremos los más comunes.
 ERROR
+
 6.	No existe tal archivo o directorio, vaya al directorio NDK y copie la carpeta de inclusión en la carpeta libcxx
 SOLUCIÓN
 Creamos una carpeta en  ..\android-ndk-r22\sources\cxx-stl\llvm-libc++\libccx
-Y pegamos la carpeta de include de la carpeta llvm -libc++
+Y pegamos la carpeta de include de la carpeta llvm -libc++.
+
 7.	Al volver a construir con: mingw32-make ya no marcara el error de antes y surgirán nuevos como el de cmath  y debmos corregirlos al deshabilitar alguna función no utilizada android-ndk.
-
-
-
-
 Simplemente comentamos las líneas que nos mencionan, en este caso en la clase math.
 Guardamos y volvemos a poner el comando mingw32-make, detectando nuevos errores.
 
@@ -69,21 +66,21 @@ Por lo cual seguimos la ruta donde se encuentran la clase a corregir:
 ..\opencv\modules\core\include\opencv2\core\cvdef.h
 Agregamos estas funciones:
 
-
 Continuando reparando el problema vamos a la clase matrix_sparse.cpp. Esta la encontramos en : ...\opencv\modules\core\src. Dentro de esta.
-•	std::max Lo sustituimos por TEMPMAX
+    •	std::max Lo sustituimos por TEMPMAX
 Guardamos y volvemos a poner el comando mingw32-make, detectando nuevos errores.
 
 8.	Encontraremos error en la función std::max  en la clase base.hpp. en la ruta: …\opencv\modules\core\include\opencv2\core dentro de esta.
 
-•	std::max Lo sustituimos por TEMPMAX
+    •	std::max Lo sustituimos por TEMPMAX
 Continuando reparando el problema vamos a la clase matrix_sparse.cpp. Esta la encontramos en : ...\opencv\modules\core\src. Dentro de esta.
-•	std::max Lo sustituimos por TEMPMAX
+    •	std::max Lo sustituimos por TEMPMAX
 Guardamos y volvemos a poner el comando mingw32-make, detectando nuevos errores.
 
 9.	Encontraremos error en la función std::max  en la clase denoise_tvl1.hpp en la ruta: …\opencv\modules\photo\src
-•	std::max Lo sustituimos por TEMPMAX
+    •	std::max Lo sustituimos por TEMPMAX
 Guardamos y volvemos a poner el comando mingw32-make, detectando nuevos errores.
+
 10.	Encontraremos error en la función std::isnan en la clase fast_nlmeans_denoising_invoker_commons.hpp  en la ruta: …\opencv\modules\photo\src
 
 std::isnan Lo sustituimos por TEMPISNAN
@@ -102,7 +99,9 @@ Guardamos y volvemos a poner el comando mingw32-make, detectando nuevos errores.
 
 13.	Encontraremos error en la función std::min en la clase roiSelector.cpp en la ruta: …\opencv\modules\photo\src
 std::min Lo sustituimos por TEMPMIN.
+
 Guardamos y volvemos a poner el comando mingw32-make.
+
 14.	Nota: Al finalizar de compilar el proyecto al 100% , vamos a la ruta:
 …\opencv\modules\java\android_sdk\CMakeFiles\openvc_java_android.dir\
 En el archivo de build.make  modificamos  ./gradlew por gradlew
@@ -122,8 +121,12 @@ Aquí copiamos todos los archivos y los pegamos en la ruta del punto anterior.
 
 20.	Copiamos la librería  libc++_shared.so esta la obtenemos del NDK en la ruta :
 \sources\cxx-stl\llvm-libc++\libs\armeabi-v7a  el archivo antes mencionado lo pegamos en la ruta del punto anterior: ..\app\src\main\ armeabi-v7a
+
 21.	Sincronizamos el proyecto , hacemos clean and rebuild.
+
 22.	Del proyecto de prueba removemos la carpeta del SDK antigua
+
 23.	Vamos a la ruta de la biblioteca creada build_android_arm\install  en esta copiamos la carpeta SDK  y lo pegamos en la aplicación de prueba, donde anteriormente estaba la carpeta SDK.
+
 24.	Corremos el proyecto y estará funcionando la librería openCV.
 
