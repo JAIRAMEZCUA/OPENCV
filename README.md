@@ -24,9 +24,10 @@ MANUAL PARA EL MINIFICADO DE OPENCV.
         •	ANT
         •	MinGW para compilar aplicaciones nativas en C.
 
-3.	Dentro de la ruta \opencv\platforms en platform creamos un directorio con el nombre de build_android_arm dentro de la carpeta usamos  cmake para configurar el espacio de trabajo.
+3.	En el CMD  nos úbicamos en la ruta de  \opencv\platforms en la carpeta de platform creamos un directorio con el nombre de build_android_arm dentro de la carpeta usamos  cmake para configurar el espacio de trabajo.
 
-4.	 Estas son las configuraciones a realizar:
+4.	 Estas son las configuraciones a realizar en el CMD:
+
 
 cmake -G “Unix Makefiles”
 -DCMAKE_TOOLCHAIN_FILE=..\platforms\android/android.toolchain.cmake  ..\..
@@ -48,14 +49,16 @@ cmake -G “Unix Makefiles”
 -DBUILD_PROTOBUF=OFF
 -DWITH_CAROTENE=NO
 -DBUILD_opencv_calib3d=OFF
--DBUILD_opencv_video=OFF
+-DBUILD_opencv_video=OFF **
 
 5.	Empezamos a construir con: mingw32-make
 
 NOTA: Empezaremos a  resolver los errores más comunes.
 
 6.	No existe tal archivo o directorio, vaya al directorio NDK y copie la carpeta de inclusión en la carpeta libcxx
-SOLUCIÓN
+
+**SOLUCIÓN**
+
 Creamos una carpeta en  ..\android-ndk-r22\sources\cxx-stl\llvm-libc++\libccx
 Y pegamos la carpeta de include de la carpeta llvm -libc++.
 
@@ -70,34 +73,34 @@ Por lo cual seguimos la ruta donde se encuentran la clase a corregir:
 Agregamos estas funciones:
 
 Continuando reparando el problema vamos a la clase matrix_sparse.cpp. Esta la encontramos en : ...\opencv\modules\core\src. Dentro de esta.
-    
+
     •	std::max Lo sustituimos por TEMPMAX
-    
+
 Guardamos y volvemos a poner el comando mingw32-make, detectando nuevos errores.
 
 8.	Encontraremos error en la función std::max  en la clase base.hpp. en la ruta: …\opencv\modules\core\include\opencv2\core dentro de esta.
 
     •	std::max Lo sustituimos por TEMPMAX
-    
+
 Continuando reparando el problema vamos a la clase matrix_sparse.cpp. Esta la encontramos en : ...\opencv\modules\core\src. Dentro de esta.
-    
+
     •	std::max Lo sustituimos por TEMPMAX
-    
+
 Guardamos y volvemos a poner el comando mingw32-make, detectando nuevos errores.
 
 9.	Encontraremos error en la función std::max  en la clase denoise_tvl1.hpp en la ruta: …\opencv\modules\photo\src
-   
+
     •	std::max Lo sustituimos por TEMPMAX
-    
-Guardamos y volvemos a poner el comando mingw32-make, detectando nuevos errores.
-
-10.	Encontraremos error en la función std::isnan en la clase fast_nlmeans_denoising_invoker_commons.hpp  en la ruta: …\opencv\modules\photo\src
-
-std::isnan Lo sustituimos por TEMPISNAN
 
 Guardamos y volvemos a poner el comando mingw32-make, detectando nuevos errores.
 
-11.	Encontraremos error en la función abs en la clase npr.hpp en la ruta: …\opencv\modules\photo\src
+10.	Encontraremos error en la función **std::isnan** en la clase fast_nlmeans_denoising_invoker_commons.hpp  en la ruta: **…\opencv\modules\photo\src**
+
+**std::isnan Lo sustituimos por TEMPISNAN**
+
+Guardamos y volvemos a poner el comando mingw32-make, detectando nuevos errores.
+
+11.	Encontraremos error en la función abs en la clase npr.hpp en la ruta: **…\opencv\modules\photo\src**
 abs Lo sustituimos por TEMPABS.
 Guardamos y volvemos a poner el comando mingw32-make, detectando nuevos errores.
 
