@@ -1,0 +1,2 @@
+# OPENCV
+Manual de minimización 
