@@ -24,7 +24,7 @@ MANUAL PARA EL MINIFICADO DE OPENCV.
         •	ANT
         •	MinGW para compilar aplicaciones nativas en C.
 
-3.	En el CMD  nos úbicamos en la ruta de  \opencv\platforms en la carpeta de platform creamos un directorio con el nombre de build_android_arm dentro de la carpeta usamos  cmake para configurar el espacio de trabajo.
+3.	En el CMD  nos úbicamos en la ruta de  **\opencv\platforms** en la carpeta de platform creamos un directorio con el nombre de **build_android_arm** dentro de la carpeta usamos  cmake para configurar el espacio de trabajo.
 
 4.	Estas son las configuraciones a realizar en el CMD:
 
@@ -51,7 +51,7 @@ cmake -G “Unix Makefiles”
 -DBUILD_opencv_calib3d=OFF
 -DBUILD_opencv_video=OFF **
 
-5.	Empezamos a construir con: mingw32-make
+5.	Empezamos a construir con: **mingw32-make**
 
 **NOTA**: Empezaremos a  resolver los errores más comunes.
 
@@ -60,14 +60,14 @@ cmake -G “Unix Makefiles”
 **SOLUCIÓN**
 
 Creamos una carpeta en  **..\android-ndk-r22\sources\cxx-stl\llvm-libc++\libccx**
-Y pegamos la carpeta de include de la carpeta llvm -libc++.
+Y pegamos la carpeta de include de la carpeta **llvm -libc++**.
 
-7.	Al volver a construir con: mingw32-make ya no marcara el error de antes y surgirán nuevos como el de cmath  y debmos corregirlos al deshabilitar alguna función no utilizada android-ndk.
+7.	Al volver a construir con: **mingw32-make** ya no marcara el error de antes y surgirán nuevos como el de cmath  y debmos corregirlos al deshabilitar alguna función no utilizada android-ndk.
 Simplemente comentamos las líneas que nos mencionan, en este caso en la clase math.
-Guardamos y volvemos a poner el comando mingw32-make, detectando nuevos errores.
+Guardamos y volvemos a poner el comando **mingw32-make**, detectando nuevos errores.
 
 
-Aquí nos menciona que existen errores en las funciones y debemos y lo solucionamos al agregar las funciones MIN MAX Y ABS y con ANDROID_STL se definen macros en OpenCV.
+Aquí nos menciona que existen errores en las funciones y debemos y lo solucionamos al agregar las funciones **MIN MAX Y ABS y con ANDROID_STL** se definen macros en **OpenCV**.
 Por lo cual seguimos la ruta donde se encuentran la clase a corregir:
 **..\opencv\modules\core\include\opencv2\core\cvdef.h**
 Agregamos estas funciones:
@@ -110,17 +110,19 @@ Guardamos y volvemos a poner el comando **mingw32-make**, detectando nuevos erro
 Guardamos y volvemos a poner el comando mingw32-make, detectando nuevos errores.
 
 13.	Encontraremos error en la función std::min en la clase roiSelector.cpp en la ruta: **…\opencv\modules\photo\src**
-std::min Lo sustituimos por TEMPMIN.
+**std::min** Lo sustituimos por **TEMPMIN**.
 
-Guardamos y volvemos a poner el comando mingw32-make.
+Guardamos y volvemos a poner el comando **mingw32-make**.
 
 14.	Nota: Al finalizar de compilar el proyecto al 100% , vamos a la ruta:
+
 **…\opencv\modules\java\android_sdk\CMakeFiles\openvc_java_android.dir\**
+
 En el archivo de build.make  modificamos  **./gradlew**  por  **gradlew**
-Guardamos y volvemos a poner el comando mingw32-make   nos mostrara que termino de ejecutarse correctamente. Ahora ponemos  mingw32-make install
+Guardamos y volvemos a poner el comando **mingw32-make**   nos mostrara que termino de ejecutarse correctamente. Ahora ponemos  **mingw32-make** install
 Se terminara de ejecutar y ahora si tendremos la biblioteca creada.
 
-15.	Importamos la librería   en new Module >> Library >> agregamos el nombre de la librería creada, el nombre del modulo y el paquete de la librería en este caso asignaremos el nombre de : org.opencv
+15.	Importamos la librería   en new Module >> Library >> agregamos el nombre de la librería creada, el nombre del modulo y el paquete de la librería en este caso asignaremos el nombre de : **org.opencv**
 
 16.	ahora se importara la biblioteca al proyecto  implementation project(“:namelibrary”)
 
@@ -128,14 +130,14 @@ Se terminara de ejecutar y ahora si tendremos la biblioteca creada.
 Una vez ubicados en ella vamos a  **..\src\main\java\org\opencv**
 En esta ruta vamos a pegar los archivos del siguiente punto.
 
-18.	Vamos a la ruta de donde creamos la biblioteca que en este ejemplo es build_android_arm e ingresamos a **build_android_arm\install\sdk\java\src\org\opencv**
+18.	Vamos a la ruta de donde creamos la biblioteca que en este ejemplo es **build_android_arm** e ingresamos a **build_android_arm\install\sdk\java\src\org\opencv**
 Aquí copiamos todos los archivos y los pegamos en la ruta del punto anterior.
 
 19.	Remplazamos la nueva librería nativa de JNI. Por lo tanto ingresamos a la ruta de librería creada en: **build_android_arm\install\sdk\native\libs\armeabi-v7a**  y copiamos el archivo de **libopencv_java4.so**  y lo pegamos en  la ruta del proyecto de prueba  **..\app\src\main\jniLibs**  aquí dentro eliminamos la carpeta de : arm64-v8a  e ingresamos a la carpeta de **armeabi-v7a**  y pegamos el archivo **libopencv_java4.so**
 
 20.	Copiamos la librería  **libc++_shared.so** esta la obtenemos del NDK en la ruta :
 
-**\sources\cxx-stl\llvm-libc++\libs\armeabi-v7a**  el archivo antes mencionado lo pegamos en la ruta del punto anterior: ..\app\src\main\ armeabi-v7a
+**\sources\cxx-stl\llvm-libc++\libs\armeabi-v7a**  el archivo antes mencionado lo pegamos en la ruta del punto anterior: **..\app\src\main\ armeabi-v7a**
 
 21.	Sincronizamos el proyecto , hacemos clean and rebuild.
 
