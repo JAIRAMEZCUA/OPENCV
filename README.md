@@ -53,13 +53,13 @@ cmake -G “Unix Makefiles”
 
 5.	Empezamos a construir con: mingw32-make
 
-NOTA: Empezaremos a  resolver los errores más comunes.
+**NOTA**: Empezaremos a  resolver los errores más comunes.
 
 6.	No existe tal archivo o directorio, vaya al directorio NDK y copie la carpeta de inclusión en la carpeta libcxx
 
 **SOLUCIÓN**
 
-Creamos una carpeta en  ..\android-ndk-r22\sources\cxx-stl\llvm-libc++\libccx
+Creamos una carpeta en  **..\android-ndk-r22\sources\cxx-stl\llvm-libc++\libccx**
 Y pegamos la carpeta de include de la carpeta llvm -libc++.
 
 7.	Al volver a construir con: mingw32-make ya no marcara el error de antes y surgirán nuevos como el de cmath  y debmos corregirlos al deshabilitar alguna función no utilizada android-ndk.
@@ -69,10 +69,10 @@ Guardamos y volvemos a poner el comando mingw32-make, detectando nuevos errores.
 
 Aquí nos menciona que existen errores en las funciones y debemos y lo solucionamos al agregar las funciones MIN MAX Y ABS y con ANDROID_STL se definen macros en OpenCV.
 Por lo cual seguimos la ruta donde se encuentran la clase a corregir:
-..\opencv\modules\core\include\opencv2\core\cvdef.h
+**..\opencv\modules\core\include\opencv2\core\cvdef.h**
 Agregamos estas funciones:
 
-Continuando reparando el problema vamos a la clase matrix_sparse.cpp. Esta la encontramos en : ...\opencv\modules\core\src. Dentro de esta.
+Continuando solucionando el error vamos a la clase **matrix_sparse.cpp** Esta la encontramos en : **...\opencv\modules\core\src** Dentro de esta.
 
     •	std::max Lo sustituimos por TEMPMAX
 
