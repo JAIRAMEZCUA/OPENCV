@@ -90,7 +90,7 @@ Guardamos y volvemos a poner el comando **mingw32-make**, detectando nuevos erro
 
 9.	Encontraremos error en la función **std::max**  en la clase **denoise_tvl1.hpp** en la ruta: **…\opencv\modules\photo\src**
 
-    •	std::max Lo sustituimos por TEMPMAX
+   •    std::max Lo sustituimos por TEMPMAX
 
 Guardamos y volvemos a poner el comando mingw32-make, detectando nuevos errores.
 
@@ -101,22 +101,23 @@ Guardamos y volvemos a poner el comando mingw32-make, detectando nuevos errores.
 Guardamos y volvemos a poner el comando **mingw32-make**, detectando nuevos errores.
 
 11.	Encontraremos error en la función abs en la clase **npr.hpp** en la ruta: **…\opencv\modules\photo\src**
+
 **abs** Lo sustituimos por **TEMPABS**.
 
 Guardamos y volvemos a poner el comando **mingw32-make**, detectando nuevos errores.
 
 12.	Encontraremos error en la función abs en la clase **seamless_cloning_impl.cpp** en la ruta: **…\opencv\modules\photo\src**
+
 **abs** Lo sustituimos por **TEMPABS**.
 Guardamos y volvemos a poner el comando mingw32-make, detectando nuevos errores.
 
 13.	Encontraremos error en la función std::min en la clase roiSelector.cpp en la ruta: **…\opencv\modules\photo\src**
+
 **std::min** Lo sustituimos por **TEMPMIN**.
 
 Guardamos y volvemos a poner el comando **mingw32-make**.
 
-14.	Nota: Al finalizar de compilar el proyecto al 100% , vamos a la ruta:
-
-**…\opencv\modules\java\android_sdk\CMakeFiles\openvc_java_android.dir\**
+14.	Nota: Al finalizar de compilar el proyecto al 100% , vamos a la ruta: ***…\opencv\modules\java\android_sdk\CMakeFiles\openvc_java_android.dir\***
 
 En el archivo de build.make  modificamos  **./gradlew**  por  **gradlew**
 Guardamos y volvemos a poner el comando **mingw32-make**   nos mostrara que termino de ejecutarse correctamente. Ahora ponemos  **mingw32-make** install
